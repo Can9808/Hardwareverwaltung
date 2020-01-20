@@ -67,52 +67,44 @@ public class ComputerUIController extends HardwareController implements Initiali
 
     }
 
-    public void clickCancel(ActionEvent actionEvent) {
-        clearValues();
-    }
-
     public void clickSafe(ActionEvent actionEvent) {
         try {
-            //lv_ausgabe.getItems().add(new Computer(seriennummer.getText(), modell.getText(), hersteller.getText(), status.getSelectionModel().getSelectedItem().toString(), Integer.parseInt(herstellergarantie.getText()), lieferdatum.getValue(), cpu.getText(), Integer.parseInt(ram.getText()), betriebssystem.getText(), typ.getSelectionModel().getSelectedItem().toString(), grafikkarte.getText(), Integer.parseInt(hdd.getText()), Integer.parseInt(ssd.getText())));
+            //TODO NEUANLAGE ODER VORHANDEN
+            if (id.getText().isEmpty()) { //Prüfung ob id empty -> neuanlage || != -> update
+                //System.out.printf(id.getText());
+                // System.out.println("Neuanlagae");
+                lv_ausgabe.getItems().add(new Computer(seriennummer.getText(), modell.getText(), hersteller.getText(), status.getSelectionModel().getSelectedItem().toString(), Integer.parseInt(herstellergarantie.getText()), lieferdatum.getValue(), cpu.getText(), Integer.parseInt(ram.getText()), betriebssystem.getText(), typ.getSelectionModel().getSelectedItem().toString(), grafikkarte.getText(), Integer.parseInt(hdd.getText()), Integer.parseInt(ssd.getText())));
+
+            } else {
+                Computer pc_safed = lv_ausgabe.getSelectionModel().getSelectedItem();
+                //System.out.println("vorhanden");
+               // System.out.println(id.getText());
+
+                //super.lv_clickedHardware(pc_safed);
+                pc_safed.setSeriennummer(seriennummer.getText());
+                pc_safed.setModell(modell.getText());
+                pc_safed.setHersteller(hersteller.getText());
+                pc_safed.setStatus(status.getValue().toString());
+                pc_safed.setHerstellergarantie(Integer.parseInt(herstellergarantie.getText()));
+                pc_safed.setLieferdatum(lieferdatum.getValue());
+                pc_safed.setCpu(cpu.getText());
+                pc_safed.setArbeitspeicher(Integer.parseInt(ram.getText()));
+                pc_safed.setBetriebssystem(betriebssystem.getText());
+                pc_safed.setTyp(typ.getValue().toString());
+                pc_safed.setGrafikkarte(grafikkarte.getText());
+                pc_safed.setFestplatte_hdd(Integer.parseInt(hdd.getText()));
+                pc_safed.setFestplatte_ssd(Integer.parseInt(ssd.getText()));
+                lv_ausgabe.refresh();
+            }
+            clearValues();
+
         } catch (Exception e) {
             Alert Test = new Alert(Alert.AlertType.ERROR, "Sie haben Möglicherweise ein Feld leer gelassen\nBitte nur Zahlen bei Ram/SSD/HDD eingeben");
             Test.showAndWait();
         }
+    }
 
-//TODO NEUANLAGE ODER VORHANDEN
-        if(id.getText().isEmpty()){
-            System.out.printf(id.getText());
-            System.out.println("Neuanlagae");
-            lv_ausgabe.getItems().add(new Computer(seriennummer.getText(), modell.getText(), hersteller.getText(), status.getSelectionModel().getSelectedItem().toString(), Integer.parseInt(herstellergarantie.getText()), lieferdatum.getValue(), cpu.getText(), Integer.parseInt(ram.getText()), betriebssystem.getText(), typ.getSelectionModel().getSelectedItem().toString(), grafikkarte.getText(), Integer.parseInt(hdd.getText()), Integer.parseInt(ssd.getText())));
-
-        } else{
-            Computer pc_safed = lv_ausgabe.getSelectionModel().getSelectedItem();
-            System.out.println("vorhanden");
-            System.out.println(id.getText());
-
-            super.lv_clickedHardware(pc_safed);
-            pc_safed.setSeriennummer(seriennummer.getText());
-            pc_safed.setModell(cpu.getText());
-            pc_safed.setHersteller(hersteller.getText());
-
-            pc_safed.setStatus(status.getValue().toString());
-            pc_safed.setHerstellergarantie(Integer.parseInt(herstellergarantie.getText()));
-            pc_safed.setLieferdatum(lieferdatum.getValue());
-            //pc_safed.
-
-
-            pc_safed.setCpu(cpu.getText());
-            pc_safed.setArbeitspeicher(Integer.parseInt(ram.getText()));
-            pc_safed.setBetriebssystem(betriebssystem.getText());
-            pc_safed.setTyp(typ.getValue().toString());
-            pc_safed.setGrafikkarte(grafikkarte.getText());
-            pc_safed.setFestplatte_hdd(Integer.parseInt(hdd.getText()));
-            pc_safed.setFestplatte_ssd(Integer.parseInt(ssd.getText()));
-            lv_ausgabe.refresh();
-
-
-
-        }
+    public void clickCancel(ActionEvent actionEvent) {
         clearValues();
     }
 
