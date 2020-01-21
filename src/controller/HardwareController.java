@@ -44,4 +44,13 @@ public abstract class HardwareController {
         herstellergarantie.setText("" + info_Safed.getHerstellergarantie());
         lieferdatum.setValue(info_Safed.getLieferdatum());
     }
+
+    public void lv_clickedSafe(Hardware info_Safed){
+        info_Safed.setSeriennummer(seriennummer.getText());
+        info_Safed.setModell(modell.getText());
+        info_Safed.setHersteller(hersteller.getText());
+        info_Safed.setStatus(status.getValue().toString());
+        info_Safed.setHerstellergarantie(Integer.parseInt(herstellergarantie.getText()));
+        info_Safed.setLieferdatum(lieferdatum.getValue());
+    }
 }

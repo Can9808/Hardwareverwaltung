@@ -115,7 +115,7 @@ public class Computer extends Hardware {
             return this.value;
         }
     }
-    public static Typ getTyp(String ty){
+    public static Typ getTypLoop(String ty){
         for(Typ tmpTyp : Typ.values()){
             if(ty == tmpTyp.value){
                 return tmpTyp;

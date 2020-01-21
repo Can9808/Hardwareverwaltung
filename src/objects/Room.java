@@ -3,14 +3,15 @@ package objects;
 import java.util.ArrayList;
 
 public class Room {
-    private String id;
+
+    private String id ;
     private String typ;
     private double size;
     private ArrayList<Hardware> hardware = new ArrayList<>();
 
     public ArrayList<Hardware> getHardware() {
         return hardware;
-    }//TODO ausgabe
+    }
 
     public void addHardware(Hardware hardware) {
         this.hardware.add(hardware);
@@ -19,9 +20,11 @@ public class Room {
     public String getId() {
         return id;
     }
+
     public void setId(String id) {
         this.id = id;
     }
+
     public String getTyp() {
         return typ;
     }
@@ -29,18 +32,20 @@ public class Room {
     public void setTyp(String typ) {
         this.typ = typ;
     }
+
     public double getSize() {
         return size;
     }
+
     public void setSize(double size) {
         this.size = size;
     }
 
-    public Room(String id, String typ, double size){
-       this.id = id;
-       this.typ = typ;
-       this.size = size;
-   }
+    public Room(String id, String typ, double size) {
+        this.id = id;
+        this.typ = typ;
+        this.size = size;
+    }
 
     @Override
     public String toString() {
@@ -48,7 +53,7 @@ public class Room {
                 + this.size + ";";
     }
 
-    public enum Typ {
+    public enum TypRoom {
         WERT1("Klassenraum"),
         WERT2("IT Fachraum"),
         WERT3("ET Fachraum"),
@@ -61,7 +66,7 @@ public class Room {
 
         private String value;
 
-        Typ(String value) {
+        TypRoom(String value) {
             this.value = value;
         }
 
@@ -74,6 +79,14 @@ public class Room {
             return this.value;
         }
     }
-    //TODO Raum Bidirektionale assoziation
 
+
+    public static TypRoom getTypRaumLoop(String ty) {
+        for (TypRoom tmpTypRoom : TypRoom.values()) {
+            if (ty == tmpTypRoom.value) {
+                return tmpTypRoom;
+            }
+        }
+        return null;
+    }
 }

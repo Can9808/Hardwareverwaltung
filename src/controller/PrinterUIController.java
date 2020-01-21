@@ -54,14 +54,15 @@ public class PrinterUIController extends HardwareController implements Initializ
     public void lv_clicked() {
         Printer printer_safed = (Printer) lv_ausgabe.getSelectionModel().getSelectedItem();
         super.lv_clickedHardware(printer_safed); //Methode aus HardwareController wird aufgerufen und pc_safed übergeben
-//TODO anpassen
-//        cpu.setText(printer_safed.getCpu());
-//        ram.setText(""+pc_safed.getArbeitspeicher());
-//        betriebssystem.setText(pc_safed.getBetriebssystem());
-//        typ.setValue(Computer.getTyp(pc_safed.getTyp()));
-//        grafikkarte.setText(pc_safed.getGrafikkarte());
-//        hdd.setText(""+pc_safed.getFestplatte_hdd());
-//        ssd.setText(""+pc_safed.getFestplatte_ssd());
+
+        farbdruckfunktion.setSelected(printer_safed.isFarbdruckfunktion());
+        technologie.setValue(Printer.getTechnologieSchleife(printer_safed.getTechnologie()));
+        papierformat.setValue(Printer.getPapFormatSchleife(printer_safed.getPapierformatmax()));
+        druckseitengesamt.setText(""+printer_safed.getDruckseitengesamt());
+        restkapazitaet.setText(""+printer_safed.getRestkapazitaet());
+        kapazitaetbetriebsmittel.setText(""+printer_safed.getRestkapazitaet());
+        room.setValue(printer_safed.getRoom());
+
     }
 
     public void clickCancel(ActionEvent actionEvent) {
@@ -70,11 +71,26 @@ public class PrinterUIController extends HardwareController implements Initializ
 
     public void clickSafe(ActionEvent actionEvent) {
         try {
+        if (id.getText().isEmpty()){ //Neuanlage
             lv_ausgabe.getItems().add(new Printer(seriennummer.getText(), modell.getText(), hersteller.getText(), status.getSelectionModel().getSelectedItem().toString(), Integer.parseInt(herstellergarantie.getText()), lieferdatum.getValue(), technologie.getSelectionModel().getSelectedItem().toString(), farbdruckfunktion.isSelected(), papierformat.getSelectionModel().getSelectedItem().toString(), room.getSelectionModel().getSelectedItem()));
+
+        }else{ //Update
+            Printer printer_safed = (Printer) lv_ausgabe.getSelectionModel().getSelectedItem();
+            super.lv_clickedSafe(printer_safed);
+
+            printer_safed.setFarbdruckfunktion(farbdruckfunktion.isSelected());
+            printer_safed.setTechnologie(technologie.getValue().toString());
+            printer_safed.setPapierformatmax(papierformat.getValue().toString());
+            printer_safed.setDruckseitengesamt(Integer.parseInt(druckseitengesamt.getText()));
+            printer_safed.setRestkapazitaet(Integer.parseInt(restkapazitaet.getText()));
+            printer_safed.setKapazitaetbetriebsmittel(Integer.parseInt(kapazitaetbetriebsmittel.getText()));
+            printer_safed.setRoom(room.getValue());
+        }
         }catch (Exception e) {
             Alert Test = new Alert(Alert.AlertType.ERROR, "Sie haben Möglicherweise ein Feld leer gelassen\nBitte nur Zahlen bei Ram/SSD/HDD eingeben");
             Test.showAndWait();
         }
+        lv_ausgabe.refresh();
         clearValues();
     }
 
@@ -84,7 +100,8 @@ public class PrinterUIController extends HardwareController implements Initializ
                         .getDashboardscene());
     }
 
-    public void clearValues() { //TODO in Hardware?
+    public void clearValues() {
+        id.clear();
         seriennummer.clear();
         modell.clear();
         hersteller.clear();
@@ -93,7 +110,11 @@ public class PrinterUIController extends HardwareController implements Initializ
         lieferdatum.setValue(null);
         technologie.setValue(null);
         farbdruckfunktion.setSelected(false);
-        papierformat.getItems().clear();
+        papierformat.setValue(null);
+        druckseitengesamt.clear();
+        restkapazitaet.clear();
+        kapazitaetbetriebsmittel.clear();
+        room.setValue(null);
     }
 
 }

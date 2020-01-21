@@ -41,6 +41,9 @@ public abstract class Hardware {
     public LocalDate berechneGarantieende() {
         return this.lieferdatum.plusMonths(this.herstellergarantie);
     }
+    public Room getRoom() {
+        return room;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -62,6 +65,9 @@ public abstract class Hardware {
     }
     public void setLieferdatum(LocalDate lieferdatum) {
         this.lieferdatum = lieferdatum;
+    }
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
     public enum Status {
@@ -95,4 +101,3 @@ public abstract class Hardware {
 }
 
 }
-//TODO Spinner dekremt inkrement

@@ -51,31 +51,24 @@ public class ComputerUIController extends HardwareController implements Initiali
 
     }
 
-//    public void loadHardware() {
-//        lv_ausgabe.getItems().add(new Computer("R001", "Acer Aspire XC-885", "Acer", "Ok", 24, LocalDate.parse("2019-11-12"), "Intel Core i5-8400", 8, "Windows 10 Home 64 bit", "Multimedia-PC", "Nvidia", 512, 5));
-//        lv_ausgabe.getItems().add(new Computer("R002", "Geforce GTX 1050", "GeForce", "Defekt", 36, LocalDate.parse("2019-11-12"), "AMD FX-6300", 8, "Windows 10 64 bit", "Gaming-PC", "Nvidia Geforce", 512, 5));
-//        lv_ausgabe.getItems().add(new Computer("R003", "Apple Mac Mini", "Apple", "In Reperatur", 24, LocalDate.parse("2019-11-12"), "Intel Core i3-8100b", 8, "macOS 10.14 Mojave 64 bit", "Multimedia-PC", "AMD", 512, 5));
-//    }
-
     public void lv_clicked() {
-        //TODO muss in drucker rein
+
         Computer pc_safed = (Computer) lv_ausgabe.getSelectionModel().getSelectedItem(); //wird geholt und in pc_safed gespeichert
 
         super.lv_clickedHardware(pc_safed); //Methode aus HardwareController wird aufgerufen und pc_safed übergeben
-
        cpu.setText(pc_safed.getCpu());
        ram.setText(""+pc_safed.getArbeitspeicher());
        betriebssystem.setText(pc_safed.getBetriebssystem());
-       typ.setValue(Computer.getTyp(pc_safed.getTyp()));
+       typ.setValue(Computer.getTypLoop(pc_safed.getTyp()));
        grafikkarte.setText(pc_safed.getGrafikkarte());
        hdd.setText(""+pc_safed.getFestplatte_hdd());
        ssd.setText(""+pc_safed.getFestplatte_ssd());
+       room.setValue(pc_safed.getRoom());
 
     }
 
     public void clickSafe(ActionEvent actionEvent) {
         try {
-            //TODO NEUANLAGE ODER VORHANDEN
             if (id.getText().isEmpty()) { //Prüfung ob id empty -> neuanlage || != -> update
                 //System.out.printf(id.getText());
                 // System.out.println("Neuanlagae");
@@ -85,12 +78,7 @@ public class ComputerUIController extends HardwareController implements Initiali
                 Computer pc_safed = (Computer) lv_ausgabe.getSelectionModel().getSelectedItem();
                 //System.out.println("vorhanden");
                // System.out.println(id.getText());
-                pc_safed.setSeriennummer(seriennummer.getText());
-                pc_safed.setModell(modell.getText());
-                pc_safed.setHersteller(hersteller.getText());
-                pc_safed.setStatus(status.getValue().toString());
-                pc_safed.setHerstellergarantie(Integer.parseInt(herstellergarantie.getText()));
-                pc_safed.setLieferdatum(lieferdatum.getValue());
+                super.lv_clickedSafe(pc_safed);
                 pc_safed.setCpu(cpu.getText());
                 pc_safed.setArbeitspeicher(Integer.parseInt(ram.getText()));
                 pc_safed.setBetriebssystem(betriebssystem.getText());
@@ -98,6 +86,8 @@ public class ComputerUIController extends HardwareController implements Initiali
                 pc_safed.setGrafikkarte(grafikkarte.getText());
                 pc_safed.setFestplatte_hdd(Integer.parseInt(hdd.getText()));
                 pc_safed.setFestplatte_ssd(Integer.parseInt(ssd.getText()));
+
+                pc_safed.setRoom(room.getValue());
                 lv_ausgabe.refresh();
             }
             clearValues();
@@ -135,6 +125,7 @@ public class ComputerUIController extends HardwareController implements Initiali
         grafikkarte.clear();
         hdd.clear();
         ssd.clear();
+        room.setValue(null);
     }
 }
 
