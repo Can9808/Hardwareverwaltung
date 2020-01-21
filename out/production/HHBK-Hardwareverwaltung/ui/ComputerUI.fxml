@@ -13,15 +13,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="750.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ComputerUIController">
+<AnchorPane prefHeight="784.0" prefWidth="605.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ComputerUIController">
     <children>
         <Text layoutX="4.0" layoutY="34.0" strokeType="INSIDE" strokeWidth="0.0" text="Rechnerverwaltung" textAlignment="CENTER" wrappingWidth="592.1787109375">
             <font>
                 <Font size="25.0" />
             </font>
         </Text>
-        <VBox layoutX="4.0" layoutY="43.0" prefHeight="505.0" prefWidth="300.0" spacing="10.0">
+        <VBox layoutX="4.0" layoutY="43.0" prefHeight="541.0" prefWidth="300.0" spacing="10.0">
             <children>
                 <Label prefHeight="25.0" text="ID">
                     <VBox.margin>
@@ -41,6 +40,7 @@
                 <Label prefHeight="25.0" text="Grafikkarte" />
                 <Label prefHeight="25.0" text="SSD Festplatte (GB)" />
                 <Label prefHeight="25.0" text="HDD Festplatte (TB)" />
+            <Label prefHeight="25.0" text="Raum" />
             </children>
             <opaqueInsets>
                 <Insets />
@@ -69,18 +69,19 @@
                 <TextField fx:id="grafikkarte" prefHeight="25.0" promptText="Grafikkarte" />
                 <TextField fx:id="ssd" prefHeight="25.0" promptText="SSD" />
                 <TextField fx:id="hdd" prefHeight="25.0" promptText="HDD" />
+            <ChoiceBox fx:id="room" prefHeight="25.0" prefWidth="150.0" />
             </children>
             <padding>
                 <Insets right="25.0" />
             </padding>
         </VBox>
-        <HBox alignment="CENTER_RIGHT" layoutX="175.0" layoutY="555.0" prefHeight="33.0" prefWidth="402.0" spacing="25.0">
+        <HBox alignment="CENTER_RIGHT" layoutX="176.0" layoutY="596.0" prefHeight="33.0" prefWidth="402.0" spacing="25.0">
             <children>
                 <Button mnemonicParsing="false" onAction="#clickSafe" text="Sichern" />
                 <Button mnemonicParsing="false" onAction="#clickCancel" text="Abbrechen" />
                 <Button mnemonicParsing="false" onAction="#clickDashboard" text="Dashboard" />
             </children>
         </HBox>
-        <ListView fx:id="lv_ausgabe" layoutX="30.0" layoutY="595.0" onMouseClicked="#lv_clicked" prefHeight="130.0" prefWidth="548.0" />
+        <ListView fx:id="lv_ausgabe" layoutX="31.0" layoutY="639.0" onMouseClicked="#lv_clicked" prefHeight="130.0" prefWidth="548.0" />
     </children>
 </AnchorPane>

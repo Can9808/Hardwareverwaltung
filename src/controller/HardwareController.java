@@ -1,7 +1,7 @@
 package controller;
 
-import hardware.Computer;
-import hardware.Hardware;
+import objects.Computer;
+import objects.Hardware;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;

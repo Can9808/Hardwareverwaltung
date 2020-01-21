@@ -1,4 +1,4 @@
-package hardware;
+package objects;
 
 import java.time.LocalDate;
 
@@ -10,6 +10,12 @@ public abstract class Hardware {
     protected String status = "ok";
     protected int herstellergarantie;
     protected LocalDate lieferdatum;
+    protected Room room;
+
+    public Hardware(Room room){
+        this.room = room;
+      this.room.addHardware(this);
+    }
 
     public int getId() {
         return id;

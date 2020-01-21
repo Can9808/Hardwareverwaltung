@@ -1,14 +1,7 @@
 package sample;
 
-import hardware.Printer;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.stage.Stage;
-
-import java.time.LocalDate;
 
 public class Main extends Application {
 

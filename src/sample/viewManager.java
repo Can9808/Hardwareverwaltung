@@ -11,10 +11,12 @@ public class viewManager {
 
     private Scene scene_viewPrinter = null;
     private Scene scene_viewComputer = null;
+    private Scene scene_viewRoom = null;
     private Scene scene_dashboard = null;
     private Pane pane_dashboard = null;
     private Pane pane_viewPrinter = null;
     private Pane pane_viewComputer = null;
+    private Pane pane_viewRoom = null;
 
     private Stage primarystage = null;
 
@@ -29,6 +31,9 @@ public class viewManager {
             this.pane_viewComputer =
                     FXMLLoader.load(getClass()
                             .getResource("/ui/ComputerUI.fxml"));
+            this.pane_viewRoom =
+                    FXMLLoader.load(getClass()
+                        .getResource("/ui/RoomUI.fxml"));
             this.pane_dashboard =
                     FXMLLoader.load(getClass()
                             .getResource("/ui/DashboardUI.fxml"));
@@ -36,6 +41,7 @@ public class viewManager {
 
             this.scene_viewPrinter = new Scene(pane_viewPrinter);
             this.scene_viewComputer = new Scene(pane_viewComputer);
+            this.scene_viewRoom = new Scene(pane_viewRoom);
             this.scene_dashboard = new Scene(pane_dashboard);
         }
         catch (Exception e)
@@ -88,5 +94,7 @@ public class viewManager {
     {
         return this.scene_dashboard;
     }
+
+    public Scene getScene_viewRoom() {return this.scene_viewRoom;}
 
 }

@@ -1,4 +1,4 @@
-package hardware;
+package objects;
 
 import java.time.LocalDate;
 
@@ -62,13 +62,12 @@ public class Computer extends Hardware {
         this.festplatte_hdd = festplatte_hdd;
     }
 
-    public Computer() {
+
+    public Computer(String seriennummer, String modell, String hersteller, String status, int herstellergarantie, LocalDate lieferdatum, String cpu, int arbeitspeicher, String betriebssystem, String typ, String grafikkarte, Integer festplatte_ssd, Integer festplatte_hdd, Room room) {
+//        this();
+        super(room);
         anzahl++;
         this.id = anzahl;
-    }
-
-    public Computer(String seriennummer, String modell, String hersteller, String status, int herstellergarantie, LocalDate lieferdatum, String cpu, int arbeitspeicher, String betriebssystem, String typ, String grafikkarte, Integer festplatte_ssd, Integer festplatte_hdd) {
-        this();
         this.seriennummer = seriennummer;
         this.modell = modell;
         this.hersteller = hersteller;
@@ -82,6 +81,8 @@ public class Computer extends Hardware {
         this.grafikkarte = grafikkarte;
         this.festplatte_hdd = festplatte_hdd;
         this.festplatte_ssd = festplatte_ssd;
+
+
 
     }
 

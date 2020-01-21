@@ -1,4 +1,4 @@
-package hardware;
+package objects;
 
 import javafx.scene.control.Alert;
 
@@ -13,14 +13,13 @@ public class Printer extends Hardware {
     private int restkapazitaet = 200;
     private int kapazitaetbetriebsmittel = 200;
 
-    public Printer() {
+
+
+
+    public Printer(String seriennummer, String modell, String hersteller, String status, int herstellergarantie, LocalDate lieferdatum, String technologie, boolean farbdruckfunktion, String papierfromatmax, Room room) {
+        super(room);
         anzahl++;
         this.id = anzahl;
-
-    }
-
-    public Printer(String seriennummer, String modell, String hersteller, String status, int herstellergarantie, LocalDate lieferdatum, String technologie, boolean farbdruckfunktion, String papierfromatmax) {
-        this();
         this.seriennummer = seriennummer;
         this.modell = modell;
         this.hersteller = hersteller;
@@ -29,7 +28,7 @@ public class Printer extends Hardware {
         this.lieferdatum = lieferdatum;
         this.technologie = technologie;
         this.farbdruckfunktion = farbdruckfunktion;
-        this.papierformatmax = papierformatmax;
+        this.papierformatmax = papierfromatmax;
     }
 
     @Override

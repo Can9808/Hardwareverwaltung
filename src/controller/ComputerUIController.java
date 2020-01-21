@@ -1,11 +1,13 @@
 package controller;
 
-import hardware.Computer;
-import hardware.Hardware;
+import objects.Computer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import objects.Hardware;
+import objects.Room;
+import sample.DaoManager;
 import sample.viewManager;
 
 import java.net.URL;
@@ -15,8 +17,8 @@ import java.util.ResourceBundle;
 public class ComputerUIController extends HardwareController implements Initializable {
 
     //<editor-fold desc="FXML Atributes">
-    //@FXML
-   // public ListView<Computer> lv_ausgabe;
+    @FXML
+    public ListView<Hardware> lv_ausgabe;
 
     @FXML
     private TextField cpu;
@@ -32,6 +34,8 @@ public class ComputerUIController extends HardwareController implements Initiali
     private TextField ssd;
     @FXML
     private TextField hdd;
+    @FXML
+    private ChoiceBox<Room> room;
 
 
     //</editor-fold>
@@ -40,30 +44,32 @@ public class ComputerUIController extends HardwareController implements Initiali
     public void initialize(URL url, ResourceBundle resourceBundle) {
         status.getItems().setAll(Computer.Status.values()); // weißt enum zur choiceBox zu
         typ.getItems().setAll(Computer.Typ.values());
+       room.getItems().setAll(DaoManager.getInstance().getListe_raum());
 
-        loadHardware();
+        lv_ausgabe.getItems().setAll(DaoManager.getInstance().getListe_rechner());
+
 
     }
 
-    public void loadHardware() {
-        lv_ausgabe.getItems().add(new Computer("R001", "Acer Aspire XC-885", "Acer", "Ok", 24, LocalDate.parse("2019-11-12"), "Intel Core i5-8400", 8, "Windows 10 Home 64 bit", "Multimedia-PC", "Nvidia", 512, 5));
-        lv_ausgabe.getItems().add(new Computer("R002", "Geforce GTX 1050", "GeForce", "Defekt", 36, LocalDate.parse("2019-11-12"), "AMD FX-6300", 8, "Windows 10 64 bit", "Gaming-PC", "Nvidia Geforce", 512, 5));
-        lv_ausgabe.getItems().add(new Computer("R003", "Apple Mac Mini", "Apple", "In Reperatur", 24, LocalDate.parse("2019-11-12"), "Intel Core i3-8100b", 8, "macOS 10.14 Mojave 64 bit", "Multimedia-PC", "AMD", 512, 5));
-    }
+//    public void loadHardware() {
+//        lv_ausgabe.getItems().add(new Computer("R001", "Acer Aspire XC-885", "Acer", "Ok", 24, LocalDate.parse("2019-11-12"), "Intel Core i5-8400", 8, "Windows 10 Home 64 bit", "Multimedia-PC", "Nvidia", 512, 5));
+//        lv_ausgabe.getItems().add(new Computer("R002", "Geforce GTX 1050", "GeForce", "Defekt", 36, LocalDate.parse("2019-11-12"), "AMD FX-6300", 8, "Windows 10 64 bit", "Gaming-PC", "Nvidia Geforce", 512, 5));
+//        lv_ausgabe.getItems().add(new Computer("R003", "Apple Mac Mini", "Apple", "In Reperatur", 24, LocalDate.parse("2019-11-12"), "Intel Core i3-8100b", 8, "macOS 10.14 Mojave 64 bit", "Multimedia-PC", "AMD", 512, 5));
+//    }
 
     public void lv_clicked() {
         //TODO muss in drucker rein
-        Computer pc_safed = lv_ausgabe.getSelectionModel().getSelectedItem(); //wird geholt und in pc_safed gespeichert
+        Computer pc_safed = (Computer) lv_ausgabe.getSelectionModel().getSelectedItem(); //wird geholt und in pc_safed gespeichert
 
         super.lv_clickedHardware(pc_safed); //Methode aus HardwareController wird aufgerufen und pc_safed übergeben
 
        cpu.setText(pc_safed.getCpu());
-        ram.setText(""+pc_safed.getArbeitspeicher());
+       ram.setText(""+pc_safed.getArbeitspeicher());
        betriebssystem.setText(pc_safed.getBetriebssystem());
        typ.setValue(Computer.getTyp(pc_safed.getTyp()));
-        grafikkarte.setText(pc_safed.getGrafikkarte());
-        hdd.setText(""+pc_safed.getFestplatte_hdd());
-        ssd.setText(""+pc_safed.getFestplatte_ssd());
+       grafikkarte.setText(pc_safed.getGrafikkarte());
+       hdd.setText(""+pc_safed.getFestplatte_hdd());
+       ssd.setText(""+pc_safed.getFestplatte_ssd());
 
     }
 
@@ -73,14 +79,12 @@ public class ComputerUIController extends HardwareController implements Initiali
             if (id.getText().isEmpty()) { //Prüfung ob id empty -> neuanlage || != -> update
                 //System.out.printf(id.getText());
                 // System.out.println("Neuanlagae");
-                lv_ausgabe.getItems().add(new Computer(seriennummer.getText(), modell.getText(), hersteller.getText(), status.getSelectionModel().getSelectedItem().toString(), Integer.parseInt(herstellergarantie.getText()), lieferdatum.getValue(), cpu.getText(), Integer.parseInt(ram.getText()), betriebssystem.getText(), typ.getSelectionModel().getSelectedItem().toString(), grafikkarte.getText(), Integer.parseInt(hdd.getText()), Integer.parseInt(ssd.getText())));
+                lv_ausgabe.getItems().add(new Computer(seriennummer.getText(), modell.getText(), hersteller.getText(), status.getSelectionModel().getSelectedItem().toString(), Integer.parseInt(herstellergarantie.getText()), lieferdatum.getValue(), cpu.getText(), Integer.parseInt(ram.getText()), betriebssystem.getText(), typ.getSelectionModel().getSelectedItem().toString(), grafikkarte.getText(), Integer.parseInt(hdd.getText()), Integer.parseInt(ssd.getText()), room.getSelectionModel().getSelectedItem()));
 
             } else {
-                Computer pc_safed = lv_ausgabe.getSelectionModel().getSelectedItem();
+                Computer pc_safed = (Computer) lv_ausgabe.getSelectionModel().getSelectedItem();
                 //System.out.println("vorhanden");
                // System.out.println(id.getText());
-
-                //super.lv_clickedHardware(pc_safed);
                 pc_safed.setSeriennummer(seriennummer.getText());
                 pc_safed.setModell(modell.getText());
                 pc_safed.setHersteller(hersteller.getText());
