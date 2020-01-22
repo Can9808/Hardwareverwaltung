@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Room {
 
-    private String id ;
+    private String id;
     private String typ;
     private double size;
     private ArrayList<Hardware> hardware = new ArrayList<>();

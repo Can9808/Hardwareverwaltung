@@ -18,6 +18,7 @@ public class DashboardController {
         viewManager.getInstance()
                 .activateScene(viewManager.getInstance()
                         .getScene_viewComputer());
+
     }
 
     public void clickedRaumButton(MouseEvent mouseEvent) {

@@ -12,35 +12,43 @@ public abstract class Hardware {
     protected LocalDate lieferdatum;
     protected Room room;
 
-    public Hardware(Room room){
+    public Hardware(Room room) {
         this.room = room;
-      this.room.addHardware(this);
+        this.room.addHardware(this);
     }
 
     public int getId() {
         return id;
     }
+
     public String getSeriennummer() {
         return seriennummer;
     }
+
     public String getModell() {
         return modell;
     }
+
     public String getHersteller() {
         return hersteller;
     }
+
     public String getStatusString() {
         return status;
     }
+
     public int getHerstellergarantie() {
         return herstellergarantie;
     }
+
     public LocalDate getLieferdatum() {
         return lieferdatum;
     }
+
     public LocalDate berechneGarantieende() {
         return this.lieferdatum.plusMonths(this.herstellergarantie);
     }
+
     public Room getRoom() {
         return room;
     }
@@ -48,26 +56,34 @@ public abstract class Hardware {
     public void setId(int id) {
         this.id = id;
     }
+
     public void setSeriennummer(String seriennummer) {
         this.seriennummer = seriennummer;
     }
+
     public void setModell(String modell) {
         this.modell = modell;
     }
+
     public void setHersteller(String hersteller) {
         this.hersteller = hersteller;
     }
+
     public void setStatus(String status) {
         this.status = status;
     }
+
     public void setHerstellergarantie(int herstellergarantie) {
         this.herstellergarantie = herstellergarantie;
     }
+
     public void setLieferdatum(LocalDate lieferdatum) {
         this.lieferdatum = lieferdatum;
     }
+
     public void setRoom(Room room) {
         this.room = room;
+        this.room.addHardware(this);
     }
 
     public enum Status {
@@ -91,13 +107,14 @@ public abstract class Hardware {
         }
 
     }
-    public static Status getStatus(String sta){
-    for(Status tmpStatus : Status.values()){ // für TMPSTATUS in Status.values
-        if(sta == tmpStatus.value){ //Wenn sta = tmpStatus dann wurde gefunden
-            return tmpStatus;
+
+    public static Status getStatus(String sta) {
+        for (Status tmpStatus : Status.values()) { // für TMPSTATUS in Status.values
+            if (sta == tmpStatus.value) { //Wenn sta = tmpStatus dann wurde gefunden
+                return tmpStatus;
+            }
         }
+        return null;
     }
-    return null;
-}
 
 }

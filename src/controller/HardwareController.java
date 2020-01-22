@@ -45,7 +45,7 @@ public abstract class HardwareController {
         lieferdatum.setValue(info_Safed.getLieferdatum());
     }
 
-    public void lv_clickedSafe(Hardware info_Safed){
+    public void lv_clickedSafe(Hardware info_Safed) {
         info_Safed.setSeriennummer(seriennummer.getText());
         info_Safed.setModell(modell.getText());
         info_Safed.setHersteller(hersteller.getText());

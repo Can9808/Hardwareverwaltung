@@ -15,24 +15,31 @@ public class Computer extends Hardware {
     public static int getAnzahl() {
         return anzahl;
     }
+
     public String getCpu() {
         return cpu;
     }
+
     public int getArbeitspeicher() {
         return arbeitspeicher;
     }
+
     public String getBetriebssystem() {
         return betriebssystem;
     }
+
     public String getTyp() {
         return typ;
     }
+
     public String getGrafikkarte() {
         return grafikkarte;
     }
+
     public Integer getFestplatte_ssd() {
         return festplatte_ssd;
     }
+
     public Integer getFestplatte_hdd() {
         return festplatte_hdd;
     }
@@ -40,24 +47,31 @@ public class Computer extends Hardware {
     public static void setAnzahl(int anzahl) {
         Computer.anzahl = anzahl;
     }
+
     public void setCpu(String cpu) {
         this.cpu = cpu;
     }
+
     public void setArbeitspeicher(int arbeitspeicher) {
         this.arbeitspeicher = arbeitspeicher;
     }
+
     public void setBetriebssystem(String betriebssystem) {
         this.betriebssystem = betriebssystem;
     }
+
     public void setTyp(String typ) {
         this.typ = typ;
     }
+
     public void setGrafikkarte(String grafikkarte) {
         this.grafikkarte = grafikkarte;
     }
+
     public void setFestplatte_ssd(Integer festplatte_ssd) {
         this.festplatte_ssd = festplatte_ssd;
     }
+
     public void setFestplatte_hdd(Integer festplatte_hdd) {
         this.festplatte_hdd = festplatte_hdd;
     }
@@ -81,7 +95,6 @@ public class Computer extends Hardware {
         this.grafikkarte = grafikkarte;
         this.festplatte_hdd = festplatte_hdd;
         this.festplatte_ssd = festplatte_ssd;
-
 
 
     }
@@ -115,9 +128,10 @@ public class Computer extends Hardware {
             return this.value;
         }
     }
-    public static Typ getTypLoop(String ty){
-        for(Typ tmpTyp : Typ.values()){
-            if(ty == tmpTyp.value){
+
+    public static Typ getTypLoop(String ty) {
+        for (Typ tmpTyp : Typ.values()) {
+            if (ty == tmpTyp.value) {
                 return tmpTyp;
             }
         }

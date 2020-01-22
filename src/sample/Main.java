@@ -10,10 +10,11 @@ public class Main extends Application {
         launch(args);
 
     }
-@Override
+
+    @Override
     public void start(Stage primaryStage) throws Exception {
         viewManager.getInstance()
-            .setStage(primaryStage);
+                .setStage(primaryStage);
 
         primaryStage.setTitle("Dashboard");
         primaryStage.setResizable(false);
@@ -21,8 +22,8 @@ public class Main extends Application {
         primaryStage.setY(100);
 
         viewManager.getInstance()
-            .activateScene(viewManager.getInstance()
-                    .getDashboardscene());
+                .activateScene(viewManager.getInstance()
+                        .getDashboardscene());
     }
 
 }

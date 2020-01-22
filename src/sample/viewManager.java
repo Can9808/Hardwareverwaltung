@@ -20,10 +20,8 @@ public class viewManager {
 
     private Stage primarystage = null;
 
-    private viewManager()
-    {
-        try
-        {
+    private viewManager() {
+        try {
 
             this.pane_viewPrinter =
                     FXMLLoader.load(getClass()
@@ -33,7 +31,7 @@ public class viewManager {
                             .getResource("/ui/ComputerUI.fxml"));
             this.pane_viewRoom =
                     FXMLLoader.load(getClass()
-                        .getResource("/ui/RoomUI.fxml"));
+                            .getResource("/ui/RoomUI.fxml"));
             this.pane_dashboard =
                     FXMLLoader.load(getClass()
                             .getResource("/ui/DashboardUI.fxml"));
@@ -43,9 +41,7 @@ public class viewManager {
             this.scene_viewComputer = new Scene(pane_viewComputer);
             this.scene_viewRoom = new Scene(pane_viewRoom);
             this.scene_dashboard = new Scene(pane_dashboard);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR,
                     e.getMessage());
@@ -53,10 +49,8 @@ public class viewManager {
         }
     }
 
-    public static viewManager getInstance()
-    {
-        if (viewManager.viewmanager == null)
-        {
+    public static viewManager getInstance() {
+        if (viewManager.viewmanager == null) {
             viewManager.viewmanager = new viewManager();
         }
         return viewManager.viewmanager;
@@ -65,8 +59,7 @@ public class viewManager {
     /**
      * @param scene
      */
-    public void activateScene(Scene scene)
-    {
+    public void activateScene(Scene scene) {
         this.primarystage.setScene(scene);
         this.primarystage.show();
     }
@@ -74,27 +67,25 @@ public class viewManager {
     /**
      * @param primaryStage
      */
-    public void setStage(Stage primaryStage)
-    {
+    public void setStage(Stage primaryStage) {
         this.primarystage = primaryStage;
     }
 
 
-    public Scene getScene_viewPrinter()
-    {
+    public Scene getScene_viewPrinter() {
         return this.scene_viewPrinter;
     }
 
-    public Scene getScene_viewComputer()
-    {
+    public Scene getScene_viewComputer() {
         return this.scene_viewComputer;
     }
 
-    public Scene getDashboardscene()
-    {
+    public Scene getDashboardscene() {
         return this.scene_dashboard;
     }
 
-    public Scene getScene_viewRoom() {return this.scene_viewRoom;}
+    public Scene getScene_viewRoom() {
+        return this.scene_viewRoom;
+    }
 
 }

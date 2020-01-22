@@ -16,21 +16,27 @@ public class Printer extends Hardware {
     public static int getAnzahl() {
         return anzahl;
     }
+
     public String getTechnologie() {
         return technologie;
     }
+
     public boolean isFarbdruckfunktion() {
         return farbdruckfunktion;
     }
+
     public String getPapierformatmax() {
         return papierformatmax;
     }
+
     public int getDruckseitengesamt() {
         return druckseitengesamt;
     }
+
     public int getRestkapazitaet() {
         return restkapazitaet;
     }
+
     public int getKapazitaetbetriebsmittel() {
         return kapazitaetbetriebsmittel;
     }
@@ -42,18 +48,23 @@ public class Printer extends Hardware {
     public void setTechnologie(String technologie) {
         this.technologie = technologie;
     }
+
     public void setFarbdruckfunktion(boolean farbdruckfunktion) {
         this.farbdruckfunktion = farbdruckfunktion;
     }
+
     public void setPapierformatmax(String papierformatmax) {
         this.papierformatmax = papierformatmax;
     }
+
     public void setDruckseitengesamt(int druckseitengesamt) {
         this.druckseitengesamt = druckseitengesamt;
     }
+
     public void setRestkapazitaet(int restkapazitaet) {
         this.restkapazitaet = restkapazitaet;
     }
+
     public void setKapazitaetbetriebsmittel(int kapazitaetbetriebsmittel) {
         this.kapazitaetbetriebsmittel = kapazitaetbetriebsmittel;
     }
@@ -135,39 +146,40 @@ public class Printer extends Hardware {
         public String toString() {
             return this.value;
         }
-        }
-        public enum PapFormat{
-            A3("A3"),
-            A4("A4");
+    }
 
-            private String value;
+    public enum PapFormat {
+        A3("A3"),
+        A4("A4");
 
-            PapFormat(String value) {
-                this.value = value;
-            }
+        private String value;
 
-            public String getValue() {
-                return value;
-            }
-
-            @Override
-            public String toString() {
-                return this.value;
-            }
+        PapFormat(String value) {
+            this.value = value;
         }
 
-    public static Printer.Technik getTechnologieSchleife(String ty){
-        for(Printer.Technik tmpTechnik : Printer.Technik.values()){
-            if(ty == tmpTechnik.value){
+        public String getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return this.value;
+        }
+    }
+
+    public static Printer.Technik getTechnologieSchleife(String ty) {
+        for (Printer.Technik tmpTechnik : Printer.Technik.values()) {
+            if (ty == tmpTechnik.value) {
                 return tmpTechnik;
             }
         }
         return null;
     }
 
-    public static Printer.PapFormat getPapFormatSchleife(String ty){
-        for(Printer.PapFormat tmpPapFormat : Printer.PapFormat.values()){
-            if(ty == tmpPapFormat.value){
+    public static Printer.PapFormat getPapFormatSchleife(String ty) {
+        for (Printer.PapFormat tmpPapFormat : Printer.PapFormat.values()) {
+            if (ty == tmpPapFormat.value) {
                 return tmpPapFormat;
             }
         }
