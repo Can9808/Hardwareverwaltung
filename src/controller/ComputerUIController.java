@@ -1,6 +1,5 @@
 package controller;
 
-import javafx.scene.input.MouseEvent;
 import objects.Computer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,7 +11,6 @@ import sample.DaoManager;
 import sample.viewManager;
 
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class ComputerUIController extends HardwareController implements Initializable {
@@ -90,7 +88,7 @@ public class ComputerUIController extends HardwareController implements Initiali
                 pc_safed.setFestplatte_hdd(Integer.parseInt(hdd.getText()));
                 pc_safed.setFestplatte_ssd(Integer.parseInt(ssd.getText()));
 
-                pc_safed.setRoom(room.getValue());//todo room zu daomanage hinzurü
+                pc_safed.setRoom(room.getValue());
                 lv_ausgabe.refresh();
             }
             clearValues();

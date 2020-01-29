@@ -101,7 +101,7 @@ public class Computer extends Hardware {
 
     @Override
     public String toString() {
-        return "ID: " + this.id + ";" + this.seriennummer + ";"
+        return this.id + ";" + this.seriennummer + ";"
                 + this.modell + ";" + this.hersteller + ";" + this.status +
                 ";" + this.herstellergarantie + ";" + this.lieferdatum.toString() + ";" +
                 this.cpu + ";" + this.arbeitspeicher + ";" + this.betriebssystem + ";" +

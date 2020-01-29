@@ -26,4 +26,9 @@ public class DashboardController {
                 .activateScene(viewManager.getInstance()
                         .getScene_viewRoom());
     }
+
+    public void clickedPersButton(MouseEvent mouseEvent) {
+        viewManager.getInstance()
+                .activateScene(viewManager.getInstance().getScene_viewPerson());
+    }
 }

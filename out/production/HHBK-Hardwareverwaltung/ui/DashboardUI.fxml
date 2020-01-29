@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="161.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DashboardController">
+<AnchorPane prefHeight="185.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DashboardController">
     <children>
         <Button fx:id="ButtonDruckerverwaltung" layoutX="25.0" layoutY="50.0" mnemonicParsing="false" onMouseClicked="#clickedDruckerverwaltung" prefWidth="200.0" text="Druckerverwaltung" />
         <Button fx:id="ButtonRechnerverwaltung" layoutX="25.0" layoutY="85.0" mnemonicParsing="false" onMouseClicked="#clickedRechnerButton" prefWidth="200.0" text="Rechnerverwaltung" />
@@ -15,5 +15,6 @@
             </font>
         </Label>
       <Button fx:id="ButtonRaumverwaltung" layoutX="25.0" layoutY="118.0" mnemonicParsing="false" onMouseClicked="#clickedRaumButton" prefWidth="200.0" text="Raumverwaltung" />
+      <Button fx:id="ButtonPersVerwaltung" layoutX="25.0" layoutY="152.0" mnemonicParsing="false" onMouseClicked="#clickedPersButton" prefWidth="200.0" text="Personenverwaltung" />
     </children>
 </AnchorPane>

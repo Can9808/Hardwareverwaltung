@@ -7,6 +7,7 @@ import objects.Hardware;
 import objects.Printer;
 import objects.Room;
 
+import java.lang.reflect.Executable;
 import java.time.LocalDate;
 
 /**
@@ -349,6 +350,13 @@ public class DaoManager {
         }
 
         return work;
+    }
+
+    public void openDBconnection() throws DBconException {
+//        if else
+
+//        bedinugn wann der gworfen wird
+        throw new DBconException("Verbingung nicht mögkich");
     }
 
 }

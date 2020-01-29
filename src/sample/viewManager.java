@@ -13,10 +13,12 @@ public class viewManager {
     private Scene scene_viewComputer = null;
     private Scene scene_viewRoom = null;
     private Scene scene_dashboard = null;
+    private Scene scene_viewPerson = null;
     private Pane pane_dashboard = null;
     private Pane pane_viewPrinter = null;
     private Pane pane_viewComputer = null;
     private Pane pane_viewRoom = null;
+    private Pane pane_viewPerson = null;
 
     private Stage primarystage = null;
 
@@ -35,12 +37,15 @@ public class viewManager {
             this.pane_dashboard =
                     FXMLLoader.load(getClass()
                             .getResource("/ui/DashboardUI.fxml"));
-
+            this.pane_viewPerson =
+                    FXMLLoader.load(getClass()
+                    .getResource("/ui/PersonUI.fxml"));
 
             this.scene_viewPrinter = new Scene(pane_viewPrinter);
             this.scene_viewComputer = new Scene(pane_viewComputer);
             this.scene_viewRoom = new Scene(pane_viewRoom);
             this.scene_dashboard = new Scene(pane_dashboard);
+            this.scene_viewPerson = new Scene(pane_viewPerson);
         } catch (Exception e) {
             e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR,
@@ -87,5 +92,7 @@ public class viewManager {
     public Scene getScene_viewRoom() {
         return this.scene_viewRoom;
     }
+
+    public  Scene getScene_viewPerson() { return this.scene_viewPerson; }
 
 }

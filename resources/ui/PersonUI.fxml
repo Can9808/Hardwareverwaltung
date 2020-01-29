@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="642.0" prefWidth="605.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PersonUIController">
+    <children>
+        <Text layoutX="4.0" layoutY="34.0" strokeType="INSIDE" strokeWidth="0.0" text="Personenverwaltung" textAlignment="CENTER" wrappingWidth="592.1787109375">
+            <font>
+                <Font size="25.0" />
+            </font>
+        </Text>
+        <VBox layoutX="4.0" layoutY="43.0" prefHeight="370.0" prefWidth="300.0" spacing="10.0">
+            <children>
+                <Label prefHeight="25.0" text="ID">
+                    <VBox.margin>
+                        <Insets top="15.0" />
+                    </VBox.margin>
+                </Label>
+                <Label prefHeight="25.0" text="Vorname" />
+                <Label prefHeight="25.0" text="Nachname" />
+                <Label prefHeight="25.0" text="Geschlecht" />
+                <Label prefHeight="25.0" text="Postleitzahl" />
+                <Label prefHeight="25.0" text="Ort" />
+                <Label prefHeight="25.0" text="Straße" />
+                <Label prefHeight="25.0" text="Hausnummer" />
+                <Label prefHeight="25.0" text="Telefonnummer" />
+                <Label prefHeight="25.0" text="E-Mail" />
+            </children>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+            <padding>
+                <Insets left="25.0" />
+            </padding>
+        </VBox>
+        <VBox layoutX="305.0" layoutY="43.0" prefHeight="370.0" prefWidth="300.0" spacing="10.0">
+            <children>
+                <TextField fx:id="id" editable="false" prefHeight="25.0" promptText="ID">
+                    <VBox.margin>
+                        <Insets top="10.0" />
+                    </VBox.margin>
+                </TextField>
+                <TextField fx:id="vorname" prefHeight="25.0" promptText="Vorname" />
+                <TextField fx:id="nachname" prefHeight="25.0" promptText="Nachname" />
+                <ChoiceBox fx:id="geschlecht" prefHeight="25.0" prefWidth="150.0" />
+                <TextField fx:id="postleitzahl" prefHeight="25.0" promptText="Postleitzahl" />
+                <TextField fx:id="ort" prefHeight="25.0" promptText="Ort" />
+                <TextField fx:id="straße" prefHeight="25.0" promptText="Straße" />
+            <TextField fx:id="hausnummer" prefHeight="25.0" promptText="Hausnummer" />
+                <TextField fx:id="telefonnummer" prefHeight="25.0" promptText="Telefonnummer" />
+            <TextField fx:id="email" prefHeight="25.0" promptText="E-Mail" />
+            </children>
+            <padding>
+                <Insets right="25.0" />
+            </padding>
+        </VBox>
+        <HBox alignment="CENTER_RIGHT" layoutX="176.0" layoutY="413.0" prefHeight="33.0" prefWidth="402.0" spacing="25.0">
+            <children>
+                <Button mnemonicParsing="false" onAction="#clickSafe" text="Sichern" />
+            <Button mnemonicParsing="false" onAction="#clickDelete" text="Löschen" />
+                <Button mnemonicParsing="false" onAction="#clickCancel" text="Abbrechen" />
+                <Button mnemonicParsing="false" onAction="#clickDashboard" text="Dashboard" />
+            </children>
+        </HBox>
+        <ListView fx:id="lv_ausgabe" layoutX="26.0" layoutY="460.0" onMouseClicked="#lv_clicked" prefHeight="167.0" prefWidth="548.0" />
+    </children>
+</AnchorPane>

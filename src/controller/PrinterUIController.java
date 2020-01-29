@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import objects.Computer;
 import objects.Hardware;
 import objects.Printer;
@@ -13,8 +12,6 @@ import sample.DaoManager;
 import sample.viewManager;
 
 import java.net.URL;
-import java.time.LocalDate;
-import java.util.Collection;
 import java.util.ResourceBundle;
 
 public class PrinterUIController extends HardwareController implements Initializable {

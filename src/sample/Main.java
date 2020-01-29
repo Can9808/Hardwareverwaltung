@@ -8,11 +8,17 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
-
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        //TODO Datenbank con öffnen
+        try {
+            DaoManager.getInstance().openDBconnection();
+        }catch(DBconException E) {
+            System.out.println(E.getMessage());
+//            Error fenster
+        }
         viewManager.getInstance()
                 .setStage(primaryStage);
 
@@ -24,6 +30,9 @@ public class Main extends Application {
         viewManager.getInstance()
                 .activateScene(viewManager.getInstance()
                         .getDashboardscene());
+        //TODO Datenbank con schließen
+//        stmt.close();
+//        con.close();
     }
 
 }
