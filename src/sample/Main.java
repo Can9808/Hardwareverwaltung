@@ -15,8 +15,11 @@ public class Main extends Application {
         //TODO Datenbank con öffnen
         try {
             DaoManager.getInstance().openDBconnection();
+            DaoManager.getInstance().DBCommandAusführen();
+            DaoManager.getInstance().closeDBconnection();
         }catch(DBconException E) {
             System.out.println(E.getMessage());
+
 //            Error fenster
         }
         viewManager.getInstance()
