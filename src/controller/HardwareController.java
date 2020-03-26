@@ -53,4 +53,5 @@ public abstract class HardwareController {
         info_Safed.setHerstellergarantie(Integer.parseInt(herstellergarantie.getText()));
         info_Safed.setLieferdatum(lieferdatum.getValue());
     }
+
 }

@@ -73,5 +73,6 @@
             </children>
         </HBox>
         <ListView fx:id="lv_ausgabe" layoutX="26.0" layoutY="460.0" onMouseClicked="#lv_clicked" prefHeight="167.0" prefWidth="548.0" />
+      <Button layoutX="26.0" layoutY="417.0" mnemonicParsing="false" onAction="#clickDataCreate" text="Testdaten erzeugen" />
     </children>
 </AnchorPane>

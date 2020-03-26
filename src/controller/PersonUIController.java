@@ -8,12 +8,14 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import objects.Computer;
 import objects.Person;
+import objects.Room;
 import sample.DaoManager;
+import sample.DaoPerson;
 import sample.viewManager;
 
 import java.net.URL;
+import java.sql.SQLOutput;
 import java.util.ResourceBundle;
 
 public class PersonUIController implements Initializable {
@@ -43,39 +45,71 @@ public class PersonUIController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         geschlecht.getItems().setAll(Person.Geschlecht.values()); // weißt enum zur choiceBox zu
+
+        this.lv_ausgabe.setItems(DaoPerson.getInstance().getListe_person());
+        try{
+            DaoPerson.getInstance().loadPersons();
+        }catch(Exception e){
+            System.out.println("initialize geht nicht von person");
+        }
     }
 
-    public void clickSafe(ActionEvent actionEvent) {
-        //Person tmpPerson = new Person("Can", "Boruk", "Männlich", 40231, "Düsseldorf", "Am Karlshof", 1, "01621867639", "IchHabeKeineEMial@google.com");
-        //lv_ausgabe.getItems().add(tmpPerson);
-        try {
-            if (id.getText().isEmpty()) { //Prüfung ob id empty -> neuanlage || != -> update
-                System.out.println("neuanlage");
-                Person tmpPerson = new Person(vorname.getText(), nachname.getText(), geschlecht.getSelectionModel().getSelectedItem().toString(), Integer.parseInt(postleitzahl.getText()), ort.getText(), straße.getText(), Integer.parseInt(hausnummer.getText()), telefonnummer.getText(), email.getText());
-                lv_ausgabe.getItems().add(tmpPerson);
-//            DaoManager.getInstance().getListe_Person().add(tmpPerson); //TODO ID? DAOMANAGER SPEICHERN?
-            } else {
-                System.out.println("UPDATE");
-                Person person_safed = (Person) lv_ausgabe.getSelectionModel().getSelectedItem();
-                person_safed.setVorname(vorname.getText());
-                person_safed.setNachname(nachname.getText());
-                person_safed.setGeschlecht(geschlecht.getValue().toString());
-                person_safed.setPlz(Integer.parseInt(postleitzahl.getText()));
-                person_safed.setOrt(ort.getText());
-                person_safed.setStraße(straße.getText());
-                person_safed.setHausnummer(Integer.parseInt(hausnummer.getText()));
-                person_safed.setTelNummer(telefonnummer.getText());
-                person_safed.setEmail(email.getText());
-            }
-            clearValues();
-        } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR, "Sie haben Möglicherweise ein Feld leer gelassen\nBitte nur Zahlen bei Ram/SSD/HDD eingeben").showAndWait();
+    private Person getPerson() {
+        Person person = new Person();
+        try{
 
+            if (this.id.getLength() > 0) {
+
+                person.setId(Integer.parseInt(this.id.getText()));
+
+            }
+            person.setVorname(this.vorname.getText());
+            person.setNachname(this.nachname.getText());
+            person.setGeschlecht(this.geschlecht.getValue().toString());
+            person.setPlz(this.postleitzahl.getText());
+            person.setOrt(this.ort.getText());
+            person.setStraße(this.straße.getText());
+            person.setHausnummer(this.hausnummer.getText());
+            person.setTelNummer(this.telefonnummer.getText());
+            person.setEmail(this.email.getText());
+
+        }catch(Exception e){
+            System.out.println("Error getPerson");
+            System.out.println(e.getMessage());
+        }
+        return person;
+    }
+    public void clickSafe(ActionEvent actionEvent) {
+        try{
+            Person person = this.getPerson();
+            System.out.println(person.getId());
+        if(person.getId() == null){
+                DaoPerson.getInstance().addPerson(person);
+                System.out.println("Neuanlage");
+            } else {
+                DaoPerson.getInstance().updatePerson(person);
+                System.out.println("UPDATE");
+                          }
+
+        }catch(Exception e){
+            System.out.println("save geht nicht");
+            System.out.println(e.getMessage());
         }
     }
 
     public void clickDelete(ActionEvent actionEvent) {
+        try {
 
+            Person person = this.getPerson();
+
+            DaoPerson.getInstance().loeschePerson(person);
+
+            this.clearValues();
+        } catch (Exception e) {
+//            //TODO CAtch delete
+            System.out.println("Delete klappt nicht");
+            System.out.println(e.getMessage());
+        }
     }
 
     public void clickCancel(ActionEvent actionEvent) {
@@ -91,7 +125,7 @@ public class PersonUIController implements Initializable {
 
     public void lv_clicked(MouseEvent mouseEvent) {
         Person person_safed = (Person) lv_ausgabe.getSelectionModel().getSelectedItem();
-//        id.setText(person_safed.getId().toString()); //TODO ID nicht ausgefüllt?
+        id.setText(String.valueOf(person_safed.getId()));
         vorname.setText(person_safed.getVorname());
         nachname.setText(person_safed.getNachname());
         geschlecht.setValue(Person.getGeschlechtLoop(person_safed.getGeschlecht()));
@@ -116,4 +150,9 @@ public class PersonUIController implements Initializable {
         email.clear();
     }
 
+    public void clickDataCreate(ActionEvent actionEvent) {
+        Person can = new Person("Can", "Müller", "Männlich", "40227", "Ddorf", "Lauchstraße ", "1", "0123893404", "ichhabekeineemail@gmx.com");
+
+        DaoPerson.getInstance().addPerson(can);
+    }
 }

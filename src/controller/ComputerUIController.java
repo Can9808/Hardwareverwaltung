@@ -70,15 +70,15 @@ public class ComputerUIController extends HardwareController implements Initiali
     public void clickSafe(ActionEvent actionEvent) {
         try {
             if (id.getText().isEmpty()) { //Prüfung ob id empty -> neuanlage || != -> update
-                //System.out.printf(id.getText());
-                // System.out.println("Neuanlagae");
+//                System.out.printf(id.getText());
+                 System.out.println("Neuanlagae");
                 Computer tmpComputer = new Computer(seriennummer.getText(), modell.getText(), hersteller.getText(), status.getSelectionModel().getSelectedItem().toString(), Integer.parseInt(herstellergarantie.getText()), lieferdatum.getValue(), cpu.getText(), Integer.parseInt(ram.getText()), betriebssystem.getText(), typ.getSelectionModel().getSelectedItem().toString(), grafikkarte.getText(), Integer.parseInt(hdd.getText()), Integer.parseInt(ssd.getText()), room.getSelectionModel().getSelectedItem());
                 lv_ausgabe.getItems().add(tmpComputer);
                 DaoManager.getInstance().getListe_rechner().add(tmpComputer);
             } else {
                 Computer pc_safed = (Computer) lv_ausgabe.getSelectionModel().getSelectedItem();
                 //System.out.println("vorhanden");
-                // System.out.println(id.getText());
+//                 System.out.println(id.getText());
                 super.lv_clickedSafe(pc_safed);
                 pc_safed.setCpu(cpu.getText());
                 pc_safed.setArbeitspeicher(Integer.parseInt(ram.getText()));

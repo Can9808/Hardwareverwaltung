@@ -1,15 +1,35 @@
 package objects;
 
+import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.*;
+
+
+@Entity
+@Table(name="t_person")
 public class Person {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(name="firstname")
     private String vorname;
+    @Column(name="lastname")
     private String nachname;
+    @Column(name="gender")
     private String geschlecht;
-    private Integer plz;
+    @Column(name="postcode")
+    private String plz;
+    @Column(name="city")
     private String ort;
+    @Column(name="street")
     private String straße;
-    private Integer hausnummer;
+    @Column(name="streetnumber")
+    private String hausnummer;
+    @Column(name="phone")
     private String telNummer;
+    @Column(name="email")
     private String email;
 
     //<editor-fold desc="Getter/Setter">
@@ -45,11 +65,11 @@ public class Person {
         this.geschlecht = geschlecht;
     }
 
-    public Integer getPlz() {
+    public String getPlz() {
         return plz;
     }
 
-    public void setPlz(Integer plz) {
+    public void setPlz(String plz) {
         this.plz = plz;
     }
 
@@ -69,11 +89,11 @@ public class Person {
         this.straße = straße;
     }
 
-    public Integer getHausnummer() {
+    public String getHausnummer() {
         return hausnummer;
     }
 
-    public void setHausnummer(Integer hausnummer) {
+    public void setHausnummer(String hausnummer) {
         this.hausnummer = hausnummer;
     }
 
@@ -94,9 +114,16 @@ public class Person {
     }
     //</editor-fold>
 
+    public Person() {
 
+    }
 
-    public Person(String vorname, String nachname, String geschlecht, Integer plz, String ort, String straße, Integer hausnummer, String telNummer, String email){
+    public Person(int id, String vorname, String nachname, String geschlecht, String plz, String ort, String straße, String hausnummer, String telNummer, String email) {
+        this(vorname, nachname, geschlecht, plz, ort, straße, hausnummer, telNummer, email);
+        this.setId(id);
+    }
+
+    public Person(String vorname, String nachname, String geschlecht, String plz, String ort, String straße, String hausnummer, String telNummer, String email) {
         this.vorname = vorname;
         this.nachname = nachname;
         this.geschlecht = geschlecht;
@@ -106,6 +133,7 @@ public class Person {
         this.hausnummer = hausnummer;
         this.telNummer = telNummer;
         this.email = email;
+
     }
 
     public enum Geschlecht {
@@ -128,18 +156,22 @@ public class Person {
             return this.value;
         }
     }
+
     public String toString() {
         return this.id + ";" + this.vorname + ";"
                 + this.nachname + ";" + this.geschlecht + ";" + this.plz.toString() +
-                ";" + this.ort + ";" + this.straße+ ";" +
-                this.hausnummer.toString() + ";" + this.telNummer + ";" + this.email + ";" ;
+                ";" + this.ort + ";" + this.straße + ";" +
+                this.hausnummer.toString() + ";" + this.telNummer + ";" + this.email + ";";
     }
-    public static Person.Geschlecht getGeschlechtLoop(String ty) {
-        for (Person.Geschlecht tmpGeschlecht : Person.Geschlecht.values()) {
-            if (ty == tmpGeschlecht.value) {
+
+    public static Geschlecht getGeschlechtLoop(String ty) {
+        for (Geschlecht tmpGeschlecht : Geschlecht.values()) {
+            if (ty.equals(tmpGeschlecht.value)) {
                 return tmpGeschlecht;
             }
         }
         return null;
     }
+
+
 }

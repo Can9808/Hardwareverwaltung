@@ -2,12 +2,8 @@ package sample;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import objects.Computer;
-import objects.Hardware;
-import objects.Printer;
-import objects.Room;
+import objects.*;
 
-import java.lang.reflect.Executable;
 import java.sql.*;
 import java.time.LocalDate;
 
@@ -21,6 +17,9 @@ public class DaoManager {
     private ObservableList<Hardware> liste_drucker = null;
     private ObservableList<Hardware> liste_rechner = null;
     private ObservableList<Room> liste_raum = null;
+    private ObservableList<Person> liste_person;
+
+    private static String DBname = "DB_Verwaltung";
 
     Connection con = null;
     PreparedStatement stmt = null;
@@ -37,6 +36,7 @@ public class DaoManager {
 
         this.liste_rechner = FXCollections.observableArrayList();
         this.loadRechner();
+
     }
 
     /**
@@ -69,6 +69,7 @@ public class DaoManager {
     public ObservableList<Room> getListe_raum() {
         return liste_raum;
     }
+
 
     /**
      *
@@ -356,30 +357,6 @@ public class DaoManager {
         return work;
     }
 
-    public void openDBconnection() throws DBconException, SQLException, ClassNotFoundException {
-//        if else
 
-        Class.forName(("com.mysql.cj.jdbc.Driver"));
-        String url = "jdbc:mysql://localhost:3306/db_verwaltung?serverTimezone=CET#";
-        con = DriverManager.getConnection(url, "root","");
-
-//        bedinugn wann der gworfen wird
-      //  throw new DBconException("Verbingung nicht mögkich");
-        System.out.println("connected");
-    }
-    public void closeDBconnection() throws DBconException, SQLException {
-        con.close();
-        System.out.println("disconnected");
-    }
-    public void DBCommandAusführen() throws DBconException, SQLException {
-        stmt = con.prepareStatement("SELECT * from t_artikel limit 1");
-        ResultSet rs = stmt.executeQuery();
-        rs.next();
-        System.out.println(rs.getString(1));
-//            rs.next();
-//            System.out.println(rs.getString(1));
-        stmt.close();
-        System.out.println("Wurde ausgeführt");
-    }
 
 }

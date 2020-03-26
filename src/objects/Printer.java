@@ -114,9 +114,7 @@ public class Printer extends Hardware {
                 druckseitengesamt += anzahlseiten;
                 restkapazitaet -= anzahlseiten;
             } else {
-                Alert alert = new Alert(Alert.AlertType.WARNING,
-                        "Es konnten nur " + this.restkapazitaet + " Seiten erfolgreich gedruckt werden!\nBitte wechseln Sie das Betriebsmittel!");
-                alert.showAndWait();
+                new Alert(Alert.AlertType.ERROR, "Es konnten nur " + this.restkapazitaet + " Seiten erfolgreich gedruckt werden!\nBitte wechseln Sie das Betriebsmittel!").showAndWait();
                 restkapazitaet = 0;
             }
         } else {
